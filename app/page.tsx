@@ -285,7 +285,7 @@ export default function PersonalWebsite() {
       image: "/housettle.png",
       link: "https://housettle.vercel.app/",
       repo: "https://github.com/Aul-rhmn/housettle",
-      featured: false,
+      featured: true,
     },
     {
       title: "Ongoing Projects",
