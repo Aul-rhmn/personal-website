@@ -257,9 +257,21 @@ export default function PersonalWebsite() {
     { name: "Node.js", level: 78, icon: <Database className="w-4 h-4" /> },
     { name: "MongoDB", level: 78, icon: <Database className="w-4 h-4" /> },
     { name: "Web Performance", level: 80, icon: <Zap className="w-4 h-4" /> },
+    { name: "MySQL", level: 75, icon: <Database className="w-4 h-4" /> },
+    { name: "PHP", level: 70, icon: <Code className="w-4 h-4" /> },
   ]
 
   const projects = [
+    {
+      title: "ERP Management System Kalasan",
+      description: "Enterprise resource planning system developed as part of my professional experience, supporting business operations and internal workflows.",
+      tech: ["React.js", "Javascript", "CSS", "Node.js", "MySQL"],
+      image: "/erp-kalasan.png",
+      link: "",
+      repo: "",
+      featured: true,
+      badgeText: "Professional Work"
+    },
     {
       title: "Pakaryan Heavy Rent",
       description: "Full-stack e-commerce a web application for renting heavy equipment across Java Island",
@@ -288,12 +300,12 @@ export default function PersonalWebsite() {
       featured: true,
     },
     {
-      title: "Ongoing Projects",
-      description: "",
+      title: "View more on my GitHub",
+      description: "Explore my other projects and open-source contributions on my GitHub profile.",
       tech: [],
       image: "",
-      link: "#",
-      repo: "",
+      link: "https://github.com/Aul-rhmn",
+      repo: "https://github.com/Aul-rhmn",
       featured: false,
     },
   ]
@@ -451,9 +463,9 @@ export default function PersonalWebsite() {
                 {
                   icon: Linkedin,
                   rotation: "-rotate-12",
-                  link: "https://www.linkedin.com/in/muhammad-aulia-rahman-3b8ab0326/",
+                  link: "https://www.linkedin.com/in/muhammad-aulia-rahman-9a9516194/",
                 },
-                { icon: Mail, rotation: "rotate-12", link: "mailto:muharmaann@gmail.com" },
+                { icon: Mail, rotation: "rotate-12", link: "mailto:muh.rahmann@gmail.com" },
               ].map(({ icon: Icon, rotation, link }, index) => (
                 <Button
                   key={index}
@@ -556,24 +568,7 @@ export default function PersonalWebsite() {
             </p>
           </div>
 
-          <div className="h-96 mb-12">
-            <Canvas>
-              <Suspense fallback={null}>
-                <Environment preset="night" />
-                <PerspectiveCamera makeDefault position={[0, 0, 12]} />
-                <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={1} />
-
-                <SkillOrb position={[-4, 2, 0]} color="#61dafb" skill="React" />
-                <SkillOrb position={[4, 2, 0]} color="#3178c6" skill="TypeScript" />
-                <SkillOrb position={[-2, -2, 2]} color="#68d391" skill="Node.js" />
-                <SkillOrb position={[2, -2, 2]} color="#f6ad55" skill="JavaScript" />
-                <SkillOrb position={[0, 0, -2]} color="#ec4899" skill="Design" />
-                <SkillOrb position={[-6, 0, 1]} color="#8b5cf6" skill="UI/UX" />
-              </Suspense>
-            </Canvas>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {skills.map((skill, index) => (
               <Card
                 key={skill.name}
@@ -606,6 +601,25 @@ export default function PersonalWebsite() {
               </Card>
             ))}
           </div>
+
+          <div className="h-96">
+            <Canvas>
+              <Suspense fallback={null}>
+                <Environment preset="night" />
+                <PerspectiveCamera makeDefault position={[0, 0, 12]} />
+                <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={1} />
+
+                <SkillOrb position={[-4, 2, 0]} color="#61dafb" skill="React" />
+                <SkillOrb position={[4, 2, 0]} color="#3178c6" skill="TypeScript" />
+                <SkillOrb position={[-2, -2, 2]} color="#68d391" skill="Node.js" />
+                <SkillOrb position={[2, -2, 2]} color="#f6ad55" skill="JavaScript" />
+                <SkillOrb position={[0, 0, -2]} color="#ec4899" skill="Design" />
+                <SkillOrb position={[-6, 0, 1]} color="#8b5cf6" skill="UI/UX" />
+                <SkillOrb position={[0, 4, -1]} color="#4479a1" skill="MySQL" />
+                <SkillOrb position={[2, 0, -3]} color="#777bb4" skill="PHP" />
+              </Suspense>
+            </Canvas>
+          </div>
         </div>
       </section>
 
@@ -630,24 +644,48 @@ export default function PersonalWebsite() {
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="aspect-video overflow-hidden relative">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  </a>
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                    <ExternalLink className="w-8 h-8 text-white transform scale-0 group-hover:scale-100 transition-transform duration-300 delay-100" />
-                  </div>
+                  {project.link && project.link !== "#" ? (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
+                      {project.image ? (
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-primary/5 group-hover:scale-110 transition-transform duration-500">
+                          <Github className="w-24 h-24 text-primary/20 group-hover:text-primary/60 transition-colors duration-500" />
+                        </div>
+                      )}
+                    </a>
+                  ) : (
+                    project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-primary/5 group-hover:scale-110 transition-transform duration-500">
+                        <Github className="w-24 h-24 text-primary/20 group-hover:text-primary/60 transition-colors duration-500" />
+                      </div>
+                    )
+                  )}
+                  {project.link && project.link !== "#" && project.image && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                      <ExternalLink className="w-8 h-8 text-white transform scale-0 group-hover:scale-100 transition-transform duration-300 delay-100" />
+                    </div>
+                  )}
                 </div>
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <CardTitle className="text-xl group-hover:text-primary transition-colors relative z-10">
                       {project.title}
                     </CardTitle>
-                    {project.featured && (
-                      <Badge className="bg-primary text-primary-foreground animate-pulse relative z-10">Featured</Badge>
+                    {(project.featured || project.badgeText) && (
+                      <Badge className="bg-primary text-primary-foreground animate-pulse relative z-10">
+                        {project.badgeText || "Featured"}
+                      </Badge>
                     )}
                   </div>
                   <CardDescription className="text-base leading-relaxed relative z-10">
@@ -669,14 +707,16 @@ export default function PersonalWebsite() {
                       </Badge>
                     ))}
                   </div>
-                  <Button 
-                  className="w-full group hover:scale-105 transition-all duration-300 relative overflow-hidden backdrop-blur-sm relative z-10"
-                  onClick={() => window.open(project.repo, "_blank")}
-                  >
-                    <span className="relative z-10">View Repo</span>
-                    <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300 relative z-10" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-20 transition-opacity duration-300 relative z-10" />
-                  </Button>
+                  {project.repo && project.repo !== "" && (
+                    <Button 
+                    className="w-full group hover:scale-105 transition-all duration-300 relative overflow-hidden backdrop-blur-sm relative z-10"
+                    onClick={() => window.open(project.repo, "_blank")}
+                    >
+                      <span className="relative z-10">View Repo</span>
+                      <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300 relative z-10" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-20 transition-opacity duration-300 relative z-10" />
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             ))}
@@ -698,12 +738,12 @@ export default function PersonalWebsite() {
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {[
-              { icon: Mail, title: "Email", value: "muharmaann@gmail.com", link: "mailto:muharmaann@gmail.com" },
+              { icon: Mail, title: "Email", value: "muh.rahmann@gmail.com", link: "mailto:muh.rahmann@gmail.com" },
               {
                 icon: Linkedin,
                 title: "LinkedIn",
                 value: "@muhammad-aulia-rahman",
-                link: "https://www.linkedin.com/in/muhammad-aulia-rahman-3b8ab0326/",
+                link: "https://www.linkedin.com/in/muhammad-aulia-rahman-9a9516194/",
               },
               { icon: Github, title: "GitHub", value: "@Aul-rhmn", link: "https://github.com/Aul-rhmn" },
             ].map((contact, index) => (
@@ -744,8 +784,8 @@ export default function PersonalWebsite() {
               size="lg"
               onClick={() => {
                 const link = document.createElement("a")
-                link.href = "/Muhammad_Aulia_Rahman_CV.pdf"
-                link.download = "Muhammad_Aulia_Rahman_CV.pdf"
+                link.href = "/CV_M_Aulia_Rahman.pdf"
+                link.download = "CV_M_Aulia_Rahman.pdf"
                 document.body.appendChild(link)
                 link.click()
                 document.body.removeChild(link)
@@ -775,7 +815,7 @@ export default function PersonalWebsite() {
                 {
                   icon: Linkedin,
                   rotation: "-rotate-12",
-                  link: "https://www.linkedin.com/in/muhammad-aulia-rahman-3b8ab0326/",
+                  link: "https://www.linkedin.com/in/muhammad-aulia-rahman-9a9516194/",
                 },
                 { icon: Mail, rotation: "rotate-12", link: "mailto:muharmaann@gmail.com" },
               ].map(({ icon: Icon, rotation, link }, index) => (
