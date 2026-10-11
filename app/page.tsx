@@ -23,6 +23,7 @@ import {
   Linkedin,
   Mail,
   ExternalLink,
+  Download,
   Menu,
   X,
   Code,
@@ -319,6 +320,15 @@ export default function PersonalWebsite() {
     }
   }
 
+  const handleDownloadCV = () => {
+    const link = document.createElement("a")
+    link.href = encodeURI("/CV_Muh. Aulia Rahman.pdf")
+    link.download = "CV_Muh. Aulia Rahman.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden relative">
       <div className="fixed inset-0 z-0">
@@ -453,6 +463,16 @@ export default function PersonalWebsite() {
                 className="hover:scale-105 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-xl relative overflow-hidden group backdrop-blur-sm"
               >
                 <span className="relative z-10">Get In Touch</span>
+                <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleDownloadCV}
+                className="hover:scale-105 transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:shadow-xl relative overflow-hidden group backdrop-blur-sm"
+              >
+                <span className="relative z-10">Download CV</span>
+                <Download className="ml-2 w-4 h-4 group-hover:translate-y-0.5 group-hover:scale-110 transition-all duration-300 relative z-10" />
                 <div className="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </Button>
             </div>
@@ -782,21 +802,14 @@ export default function PersonalWebsite() {
             <Button
               variant="outline"
               size="lg"
-              onClick={() => {
-                const link = document.createElement("a")
-                link.href = "/CV_M_Aulia_Rahman.pdf"
-                link.download = "CV_M_Aulia_Rahman.pdf"
-                document.body.appendChild(link)
-                link.click()
-                document.body.removeChild(link)
-              }}
+              onClick={handleDownloadCV}
               className={`group hover:scale-110 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/25 relative overflow-hidden backdrop-blur-sm relative z-10 ${
                 visibleElements.has("contact") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: "500ms" }}
             >
               <span className="relative z-10">Download CV</span>
-              <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300 relative z-10" />
+              <Download className="ml-2 w-4 h-4 group-hover:translate-x-2 group-hover:scale-110 transition-all duration-300 relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-20 transition-opacity duration-300 relative z-10" />
             </Button>
           </div>
